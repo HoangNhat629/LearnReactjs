@@ -1,0 +1,25 @@
+.Trafic {
+  display: flex;
+  justify-content: space-between;
+}
+.Trafic .buld {
+  width: 64px;
+  height: 64px;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 10px;
+  opacity: 0.2;
+}
+.Trafic .buld.active {
+  opacity: 1;
+}
+
+.Trafic .buld.red {
+  background-color: red;
+}
+.Trafic .buld.orange {
+  background-color: orange;
+}
+.Trafic .buld.green {
+  background-color: green;
+}
