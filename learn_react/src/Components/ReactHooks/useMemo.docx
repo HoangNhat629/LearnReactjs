@@ -1,0 +1,22 @@
+Là một react hooks giúp mình tạo ra một memoized value và chỉ tính toán ra value mới khi
+dependencies thay đổi
+- Nhận vào 2 tham số: 1 là function, 2 là dependencies.
+- Return memoized value
+- Chỉ tính toán value mới khi dependencies thay đổi.
+- Nếu dùng empty dependencies thì không bao giờ tính toán lại value mới.
+
+// Mỗi lần App re-render
+// --> tạo ra một mảng mới
+// --> Chart bị re-render do props thay đổi
+function App() {
+ const data = [{}, {}, {}];
+ return <Chart data={data} />;
+}
+
+// Mỗi lần App re-render
+// --> nhờ có useMemo() nó chỉ tạo ra cái mảng 1 lần đầu
+// --> Nên Chart ko bị re-render.
+function App() {
+ const data = useMemo(() => [{}, {}, {}], [])
+ return <Chart data={data} />;
+}

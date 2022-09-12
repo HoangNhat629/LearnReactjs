@@ -1,27 +1,36 @@
-I. Mounting
+I. Mounting (được tạo ra)
  These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
-  - constructor()
+  - constructor(): + Định nghĩa properties của component.
+                   + Khai báo state. 
   - static getDerivedStateFromProps()
   - render()
-  - componentDidMount()
+  - componentDidMount(): + Khởi tạo dữ liệu cho component: gọi API, biến đổi dữ liệu, cập nhật state.
+                         + Gửi tracking page view (GA, FacebookPixel, ...)
  Các phương pháp này được coi là kế thừa
  You should avoid them in new code:
    UNSAFE_componentWillMount()
-II. Updating
+II. Updating(Qua nhiều thay đổi)
  An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
  - static getDerivedStateFromProps()
  - shouldComponentUpdate()
  - render()
  - getSnapshotBeforeUpdate()
+ Hạn chế dùng:
  - componentDidUpdate()
+   ADVANCED Chỉ dùng nếu muốn handle update component khi click nút back mà trên URL có query params.
  Note: These methods are considered legacy and you should avoid them in new code:
  UNSAFE_componentWillUpdate()
  UNSAFE_componentWillReceiveProps()
-III. Unmounting
+III. Unmounting(Và bị huỷ bỏ)
  This method is called when a component is being removed from the DOM:
- - componentWillUnmount()
+ - componentWillUnmount(): + Khởi tạo dữ liệu cho component: gọi API, biến đổi dữ liệu, cập nhật state.
+                           + Gửi tracking page view (GA, FacebookPixel, ...)
+
  - Error
 IV. Handling
  These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
  - static getDerivedStateFromError()
  - componentDidCatch()
+V. Component vs PureComponent
+Component: shouldComponentUpdate() luôn trả về true
+PureComponent: shouldComponentUpdate() có shallow comparison(so sáng props và state trước với props và state sau: Nếu có sự thay đổi thì trả về true và render lại không thì không render lại)
