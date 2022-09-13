@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import productAPI from "../../api/productAPI";
-import ToDoForm from "../ToDo/ToDoForm/index";
+import ToDoForm from "./ToDoForm/index";
 export default function Home() {
   useEffect(() => {
     const fetchProduct = async () => {

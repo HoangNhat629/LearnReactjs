@@ -10,17 +10,25 @@ ToDoForm.propTypes = {
 function ToDoForm(props) {
   const schema = yup
     .object({
-      title: yup.string().required("Please enter title"),
+      title: yup
+        .string()
+        .required("Please enter title")
+        .min(5, "Title is too short"),
     })
     .required();
   const form = useForm({
     defaultValues: {
-      title: "title",
+      title: "",
     },
     resolver: yupResolver(schema),
   });
   const handleSubmit = (value) => {
     console.log("ToDo:", value);
+    const { onSubmit } = props;
+    if (onSubmit) {
+      onSubmit(value);
+    }
+    form.reset();
   };
   return (
     <>
